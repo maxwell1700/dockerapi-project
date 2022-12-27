@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  spring-app:
+    build: .
+    image: dockerapibackend
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:5.7
+    ports:
+      - 3307:3306
+
+    environment:
+      MYSQL_DATABASE: employee
+      MYSQL_ROOT_PASSWORD: maxpass
+      MYSQL_USER: maxpass
+      MYSQL_PASSWORD: maxpass
+
+
